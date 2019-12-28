@@ -11,17 +11,15 @@ public class Inimigo_Defaut : MonoBehaviour {
 		anim = GetComponent<Animator>();
 	}
 	
-	void Update() {
-		if(vidaAgora >= 0){
+	public void Up() {
+		if(vidaAgora <= 0){
 			/*Tem que acertar a animação*/
 			gameObject.SetActive(false);
 		}	
 	}
 
-	private void OnTriggerEnter2D(Collider2D tiro) {
-		if(tiro.tag == "tiro"){
-			vidaAgora--;
-		}
+	public void chamarInimigo(){
+		vidaAgora = vidaMax;
+		/*Resolver animação*/
 	}
-
 }

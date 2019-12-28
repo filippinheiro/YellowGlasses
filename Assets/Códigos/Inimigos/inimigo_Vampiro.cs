@@ -28,11 +28,15 @@ public class inimigo_Vampiro : Inimigo_Defaut {
 			direita = !direita;
 		}
 		rig.velocity = direita ? new Vector2(velocidade,-velocidade*0.3f) : new Vector2(-velocidade,-velocidade*0.3f);
+		Up();
 	}
 
 	private void OnTriggerEnter2D(Collider2D coll) {
 		if(coll.tag == "Inimigo"){
 			direita = !direita;
+		}else
+		if(coll.tag == "tiro"){
+			vidaAgora--;
 		}
 	}
 }

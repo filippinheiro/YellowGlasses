@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Códigos\Canhão\atirar_Canhao.cs" />
      <Compile Include="Assets\Códigos\Canhão\tiro_defaut.cs" />
+     <Compile Include="Assets\Códigos\GerenteDeJogo.cs" />
      <Compile Include="Assets\Códigos\Inimigos\Inimigo_Defaut.cs" />
      <Compile Include="Assets\Códigos\Inimigos\inimigo_Vampiro.cs" />
      <Compile Include="Assets\Códigos\pooler.cs" />
