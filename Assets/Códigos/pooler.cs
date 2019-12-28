@@ -18,10 +18,6 @@ public class pooler : MonoBehaviour
 		}
 	}
 
-    void Update()
-    {
-    }
-
     public GameObject pegarObjeto(int code, Vector3 posicao, Quaternion rotacao)
     {
         GameObject pedido = null;

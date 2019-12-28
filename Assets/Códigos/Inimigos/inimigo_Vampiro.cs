@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class inimigo_Vampiro : MonoBehaviour {
+public class inimigo_Vampiro : Inimigo_Defaut {
 
 	private Rigidbody2D rig;
 	private Camera cam;
@@ -10,7 +10,7 @@ public class inimigo_Vampiro : MonoBehaviour {
 	private float widthCam;
 	private float inimigoSizeX;
 	public bool direita;
-	public float velocidade;
+
 	void Start () {
 		rig = this.GetComponent<Rigidbody2D>();
 		
