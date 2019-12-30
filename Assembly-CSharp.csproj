@@ -57,6 +57,8 @@
      <Compile Include="Assets\Códigos\Inimigos\Inimigo_Defaut.cs" />
      <Compile Include="Assets\Códigos\Inimigos\inimigo_Vampiro.cs" />
      <Compile Include="Assets\Códigos\pooler.cs" />
+     <Compile Include="Assets\Códigos\Telas\pontuacao.cs" />
+     <Compile Include="Assets\Códigos\Telas\tempoDecorrido.cs" />
  <Reference Include="UnityEngine.CoreModule">
  <HintPath>C:/Program Files/Unity/2018.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
  </Reference>

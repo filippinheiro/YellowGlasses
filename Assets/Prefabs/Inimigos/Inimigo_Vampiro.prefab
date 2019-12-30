@@ -103,6 +103,8 @@ MonoBehaviour:
   vidaMax: 1
   vidaAgora: 1
   anim: {fileID: 0}
+  dano: 30
+  ger: {fileID: 0}
   direita: 0
 --- !u!212 &212289980660197302
 SpriteRenderer:

@@ -13,7 +13,6 @@ public class atirar_Canhao : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetMouseButtonDown(0)){
-			Debug.Log("É...");
 			poolerDeTiros.pegarObjeto(0, transform.GetChild(0).position, transform.rotation).GetComponent<tiro_defaut>().ObjetoChamado();
 		}
 	}

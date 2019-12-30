@@ -7,6 +7,9 @@ TagManager:
   - Inimigo
   - bagTiros
   - tiro
+  - Gerente
+  - Cerca
+  - bagInimigos
   layers:
   - Default
   - TransparentFX

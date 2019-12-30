@@ -9,7 +9,7 @@ public class tiro_defaut : MonoBehaviour {
 	public float velocidade;
 	
 	void Update() {
-		if(transform.position.x > widthCam/2 || -transform.position.x < -widthCam/2 || transform.position.y > heightCam/2){
+		if(transform.position.x > widthCam/2 || transform.position.x < -widthCam/2 || transform.position.y > heightCam/2){
 			gameObject.SetActive(false);
 		}
 	}

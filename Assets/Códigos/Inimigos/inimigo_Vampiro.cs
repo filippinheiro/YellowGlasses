@@ -12,6 +12,8 @@ public class inimigo_Vampiro : Inimigo_Defaut {
 	public bool direita;
 
 	void Start () {
+		StartThis();
+		
 		rig = this.GetComponent<Rigidbody2D>();
 		
 		#region Achando Tamanho da Câmera
@@ -37,6 +39,12 @@ public class inimigo_Vampiro : Inimigo_Defaut {
 		}else
 		if(coll.tag == "tiro"){
 			vidaAgora--;
+		}else
+		if(coll.tag == "Cerca"){
+			ger.diminuirVida(dano);
+			Explodir();
 		}
 	}
+
+	
 }
