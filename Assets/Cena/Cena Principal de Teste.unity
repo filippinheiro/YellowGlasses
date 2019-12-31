@@ -2583,7 +2583,7 @@ MonoBehaviour:
   - {fileID: 1504537660}
   - {fileID: 289732124}
   - {fileID: 1799785560}
-  tempoDeSpawn: 2
+  tempoDeSpawn: 4
   pontuacao: 0
   canhao: {fileID: 1763392694}
   gameScreen: {fileID: 1349888229}

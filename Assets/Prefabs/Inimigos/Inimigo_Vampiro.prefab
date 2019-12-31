@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad4ac17816dfe140a1b639a5a7a3cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeMax: 3
-  velocidadeMin: 1
+  velocidadeMax: 2
+  velocidadeMin: 0.5
   velocidade: 0
   vidaMax: 1
   vidaAgora: 1

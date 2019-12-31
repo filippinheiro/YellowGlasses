@@ -51,23 +51,25 @@ public class GerenteDeJogo : MonoBehaviour {
 
 	
 	void mecanicasDeJogo(){
-		dificuldade += Time.deltaTime*0.02f;
+		dificuldade += dificuldade < 1.5 ? Time.deltaTime*0.007f : 0;
 		contador += Time.deltaTime;
 		if(contador >= tempoDeSpawn){
-			int quantosInimPSpawn = Mathf.CeilToInt(Random.Range(dificuldade,3f));
-		int [] locais = new int[quantosInimPSpawn];
+			int quantosInimPSpawn = Mathf.CeilToInt(Random.Range(0,3f));
+			int [] locais = new int[quantosInimPSpawn];
 			int i = 0;
-			while(i<=quantosInimPSpawn-1){
+			while(i<quantosInimPSpawn){
 				locais[i] = Mathf.CeilToInt(Random.Range(-1f,2f));
-				for(int j = 0;j<locais.Length;j++){
-					for(int k = 0; k<locais.Length;k++){
-						if(locais[j] != locais[k] || (locais[j] == locais[k] && j==k)){
-							pool.pegarObjeto(0,Spawners[locais[i]].transform.position, new Quaternion(0,0,0,0)).GetComponent<Inimigo_Defaut>().chamarInimigo();
-							i++;
-							break;
-						}
+				for(int j = 0; j<quantosInimPSpawn;j++){
+					if(locais[i] == locais[j] && j != i){
+							while(locais[i] == locais[j]){
+								locais[i] = Mathf.CeilToInt(Random.Range(-1f,2f));
+							}
 					}
+					
 				}	
+				GameObject temporario = pool.pegarObjeto(0,Spawners[locais[i]].transform.position, new Quaternion(0,0,0,0));
+				temporario.GetComponent<Inimigo_Defaut>().chamarInimigo();
+				i++;
 			}
 			contador = 0;
 		}
