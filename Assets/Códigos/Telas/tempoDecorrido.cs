@@ -7,7 +7,7 @@ public class tempoDecorrido : MonoBehaviour {
 
 	Text tempoEscrito;
 	float tempo;
-	string minutos, segundos;
+	public string minutos, segundos;
 	void Start () {
 		tempoEscrito = GetComponent<Text>();
 		tempo = 0;
@@ -16,6 +16,12 @@ public class tempoDecorrido : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		tempo += Time.deltaTime;
-		tempoEscrito.text = Mathf.Floor((int)tempo/60).ToString("00") + ":" + ((int)tempo%60).ToString("00");
+		minutos = Mathf.Floor((int)tempo/60).ToString("00");
+		segundos = ((int)tempo%60).ToString("00");
+		tempoEscrito.text = minutos + ":" + segundos;
+	}
+
+	public void zerarTempo(){
+		tempo = 0;
 	}
 }

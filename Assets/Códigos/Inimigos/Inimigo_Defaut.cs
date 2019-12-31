@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inimigo_Defaut : MonoBehaviour {
 
-	public float velocidade;
+	public float velocidadeMax, velocidadeMin, velocidade;
 	public int vidaMax, vidaAgora;
 	public Animator anim;
 	public int dano;
@@ -21,10 +21,12 @@ public class Inimigo_Defaut : MonoBehaviour {
 			ger.pontuacao += dano;
 			gameObject.SetActive(false);
 		}	
+		GetComponent<Rigidbody2D>().simulated = !ger.pauseChamado;
 	}
 
 	public void chamarInimigo(){
 		vidaAgora = vidaMax;
+		velocidade = Random.Range(velocidadeMin,velocidadeMax);
 		/*Resolver animação*/
 	}
 
