@@ -20,7 +20,6 @@ public class atirar_Canhao : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0) && contador >= tempoDeTiro && Time.timeScale != 0){
 			poolerDeTiros.pegarObjeto(0, transform.GetChild(0).position, transform.rotation).GetComponent<tiro_defaut>().ObjetoChamado();
 			contador = 0;
-			anim.SetTrigger("tiro");
 		}
 	}
 }

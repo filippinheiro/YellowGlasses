@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class GerenteDeJogo : MonoBehaviour {
 	
-	private bool jogoChamado = false;
-	public bool pauseChamado = false;
+	public bool jogoPausado = false;
 	public float dificuldade = 0;
 	public bool JogoIniciado = false;
 	private GameObject temp;
@@ -19,7 +18,8 @@ public class GerenteDeJogo : MonoBehaviour {
 
 	public int pontuacao = 0;
 
-	public GameObject canhao, gameScreen;
+	public GameObject initScreen;
+	public GameObject gameScreen;
 	public GameObject pauseScreen;
 	public GameObject endScreen;
 	public Text pontuacaoTxt, recordTxt;
@@ -33,20 +33,10 @@ public class GerenteDeJogo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(jogoChamado && !JogoIniciado){
-			IniciarJogo(temp);
-		}
-		if(JogoIniciado){
+		if(JogoIniciado && !jogoPausado){
 			mecanicasDeJogo();
-			tentePausar();
 			tenteMorrer();
 		}
-		if(!pauseChamado && pauseScreen.active){
-			if(pauseScreen.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Ir para o Lado") && pauseScreen.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime > .99f){
-				pauseScreen.SetActive(false);
-			}	
-		}
-		
 	}
 
 	
@@ -83,49 +73,37 @@ public class GerenteDeJogo : MonoBehaviour {
 	}	
 
 	public void IniciarJogo(GameObject QuemChamou){
-		temp = !jogoChamado ? QuemChamou : temp;
-		if(!checarAnimacao(QuemChamou)){
+			QuemChamou.GetComponent<Animator>().SetTrigger("Saia");			
 			vidaAgora = vidaMax;
 			JogoIniciado = true;
-			QuemChamou.SetActive(false);
-			canhao.SetActive(true);
+			jogoPausado = false;
 			gameScreen.SetActive(true);
 			gameScreen.GetComponent<Animator>().SetTrigger("Volte");
 			pontuacao = 0;
 			dificuldade = 0;
-		}
-		
-		jogoChamado = true;
-	}
-
-	private bool checarAnimacao(GameObject Objeto){
-		Animator anim = Objeto.GetComponent<Animator>();
-		if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Parada") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .99f)
-		return false;
-		else
-		return true;
+			tempoDec.zerarTempo();
 	}
 
 	public void pausarJogo(){
 		pauseScreen.SetActive(true);
-		pauseChamado = true;
-		pauseScreen.GetComponent<Animator>().SetTrigger("Volte"); 
-		gameScreen.GetComponent<Animator>().SetTrigger("Saia"); 
-	}
-
-	private void tentePausar(){
-		Animator anim = pauseScreen.GetComponent<Animator>();
-		if(pauseChamado && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .99f && gameScreen.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime > .99f && !gameScreen.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Parada")){
-			Time.timeScale = 0;
-		}
-		
+		jogoPausado = true;
 	}
 
 	public void despausar(){
 		Time.timeScale = 1;
-		pauseChamado = false;
-		pauseScreen.GetComponent<Animator>().SetTrigger("Saia"); 
-		gameScreen.GetComponent<Animator>().SetTrigger("Volte"); 
+		jogoPausado = false;
+		gameScreen.SetActive(true); 
+	}
+
+	public void menuPrincipal(){
+		Time.timeScale = 1;
+		JogoIniciado = false;
+		initScreen.SetActive(true);
+		GameObject [] inimigos;
+		inimigos = GameObject.FindGameObjectsWithTag("Inimigo");
+		for(int i = 0; i<inimigos.Length;i++){
+			inimigos[i].GetComponent<Inimigo_Defaut>().Explodir();
+		}
 	}
 
 	private void tenteMorrer(){
@@ -134,6 +112,7 @@ public class GerenteDeJogo : MonoBehaviour {
 			for(int i = 0; i<inimigos.Length;i++){
 				inimigos[i].GetComponent<Inimigo_Defaut>().Explodir();
 			}
+			
 			gameScreen.GetComponent<Animator>().SetTrigger("Saia");	
 			endScreen.SetActive(true);
 			endScreen.GetComponent<Animator>().SetTrigger("Volte");

@@ -21,7 +21,7 @@ public class Inimigo_Defaut : MonoBehaviour {
 			ger.pontuacao += dano;
 			gameObject.SetActive(false);
 		}	
-		GetComponent<Rigidbody2D>().simulated = !ger.pauseChamado;
+		GetComponent<Rigidbody2D>().simulated = !ger.jogoPausado;
 	}
 
 	public void chamarInimigo(){
