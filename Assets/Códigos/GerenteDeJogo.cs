@@ -13,7 +13,7 @@ public class GerenteDeJogo : MonoBehaviour {
 
 	public GameObject [] Spawners;
 	public float tempoDeSpawn;
-	float contador = 0;
+	public float contador = 0;
 	pooler pool;
 
 	public int pontuacao = 0;

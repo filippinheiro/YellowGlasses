@@ -5,8 +5,7 @@ using UnityEngine;
 public class atirar_Canhao : MonoBehaviour {
 
 	private pooler poolerDeTiros, poolerDeEfeitos;
-	public float tempoDeTiro;
-	float contador;
+	public float tempoDeTiro, contador;
 	Animator anim;
 	GerenteDeJogo ger;
 	void Start () {
