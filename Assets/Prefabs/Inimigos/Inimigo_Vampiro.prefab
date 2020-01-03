@@ -123,7 +123,7 @@ MonoBehaviour:
   vidaMax: 1
   vidaAgora: 1
   anim: {fileID: 0}
-  dano: 30
+  dano: 15
   ger: {fileID: 0}
   poolEfeitos: {fileID: 0}
   direita: 0

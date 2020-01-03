@@ -116,11 +116,11 @@ public class GerenteDeJogo : MonoBehaviour {
 			gameScreen.GetComponent<Animator>().SetTrigger("Saia");	
 			endScreen.SetActive(true);
 			endScreen.GetComponent<Animator>().SetTrigger("Volte");
-			pontuacaoTxt.text = tempoDec.minutos + "min x " +tempoDec.segundos + "sec = " + int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos)+"\n+"+pontuacao+"pts";
-			pontFinal.text = (int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) + pontuacao)+"pts";
-			if(PlayerPrefs.GetInt("recorde") == 0 || int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) + pontuacao > PlayerPrefs.GetInt("recorde") || PlayerPrefs.GetInt("recorde") == null){
-				PlayerPrefs.SetInt("recorde", int.Parse(tempoDec.minutos) * int.Parse(tempoDec.minutos) + pontuacao);
-				recordTxt.text = (int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) + pontuacao) + "pts";	
+			pontuacaoTxt.text = tempoDec.minutos + "min x " +tempoDec.segundos + "sec = " + int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos)+"\nx"+pontuacao+"pts";
+			pontFinal.text = (int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) * pontuacao)+"pts";
+			if(PlayerPrefs.GetInt("recorde") == 0 || int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) * pontuacao > PlayerPrefs.GetInt("recorde") || PlayerPrefs.GetInt("recorde") == null){
+				PlayerPrefs.SetInt("recorde", int.Parse(tempoDec.minutos) * int.Parse(tempoDec.minutos) * pontuacao);
+				recordTxt.text = (int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) * pontuacao) + "pts";	
 			}else{
 				recordTxt.text = PlayerPrefs.GetInt("recorde")+"pts";
 			}
