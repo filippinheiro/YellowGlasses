@@ -10,6 +10,7 @@ TagManager:
   - Gerente
   - Cerca
   - bagInimigos
+  - bagEfeitos
   layers:
   - Default
   - TransparentFX

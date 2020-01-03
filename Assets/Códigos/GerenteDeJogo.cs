@@ -22,7 +22,7 @@ public class GerenteDeJogo : MonoBehaviour {
 	public GameObject gameScreen;
 	public GameObject pauseScreen;
 	public GameObject endScreen;
-	public Text pontuacaoTxt, recordTxt;
+	public Text pontuacaoTxt, recordTxt, pontFinal;
 	public pontuacao pont;
 	public tempoDecorrido tempoDec;
 
@@ -41,10 +41,10 @@ public class GerenteDeJogo : MonoBehaviour {
 
 	
 	void mecanicasDeJogo(){
-		dificuldade += dificuldade < 1.5 ? Time.deltaTime*0.007f : 0;
+		dificuldade += dificuldade < 3 ? Time.deltaTime/60f : 0;
 		contador += Time.deltaTime;
-		if(contador >= tempoDeSpawn){
-			int quantosInimPSpawn = Mathf.CeilToInt(Random.Range(0,3f));
+		if(contador + dificuldade/2 >= tempoDeSpawn){
+			int quantosInimPSpawn = Mathf.CeilToInt(Random.Range(dificuldade,3f));
 			int [] locais = new int[quantosInimPSpawn];
 			int i = 0;
 			while(i<quantosInimPSpawn){
@@ -116,10 +116,11 @@ public class GerenteDeJogo : MonoBehaviour {
 			gameScreen.GetComponent<Animator>().SetTrigger("Saia");	
 			endScreen.SetActive(true);
 			endScreen.GetComponent<Animator>().SetTrigger("Volte");
-			pontuacaoTxt.text = tempoDec.minutos + "x" +tempoDec.segundos + " = " + int.Parse(tempoDec.minutos) * int.Parse(tempoDec.minutos)+"\n+"+pontuacao+"\n"+(int.Parse(tempoDec.minutos) * int.Parse(tempoDec.minutos) + pontuacao)+"pts";
-			if(PlayerPrefs.GetInt("recorde") == 0 || int.Parse(tempoDec.minutos) * int.Parse(tempoDec.minutos) + pontuacao > PlayerPrefs.GetInt("recorde") || PlayerPrefs.GetInt("recorde") == null){
+			pontuacaoTxt.text = tempoDec.minutos + "min x " +tempoDec.segundos + "sec = " + int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos)+"\n+"+pontuacao+"pts";
+			pontFinal.text = (int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) + pontuacao)+"pts";
+			if(PlayerPrefs.GetInt("recorde") == 0 || int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) + pontuacao > PlayerPrefs.GetInt("recorde") || PlayerPrefs.GetInt("recorde") == null){
 				PlayerPrefs.SetInt("recorde", int.Parse(tempoDec.minutos) * int.Parse(tempoDec.minutos) + pontuacao);
-				recordTxt.text = (int.Parse(tempoDec.minutos) * int.Parse(tempoDec.minutos) + pontuacao) + "pts";	
+				recordTxt.text = (int.Parse(tempoDec.minutos) * int.Parse(tempoDec.segundos) + pontuacao) + "pts";	
 			}else{
 				recordTxt.text = PlayerPrefs.GetInt("recorde")+"pts";
 			}

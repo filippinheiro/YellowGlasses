@@ -14,8 +14,7 @@ public class inimigo_Vampiro : Inimigo_Defaut {
 	void Start () {
 		StartThis();
 		
-		rig = this.GetComponent<Rigidbody2D>();
-		
+		rig = GetComponent<Rigidbody2D>();
 		#region Achando Tamanho da Câmera
 		cam = Camera.main;
 		heightCam = 2f * cam.orthographicSize;
@@ -26,7 +25,7 @@ public class inimigo_Vampiro : Inimigo_Defaut {
 	}
 	
 	void Update () {
-		if((transform.position.x > widthCam/2 - inimigoSizeX/2 && direita) || (transform.position.x < -widthCam/2 + inimigoSizeX/2 && !direita)){
+		if((transform.position.x + inimigoSizeX/2 > widthCam/2 && direita) || (transform.position.x - inimigoSizeX/2 < -widthCam/2 && !direita)){
 			direita = !direita;
 		}
 		rig.velocity = direita ? new Vector2(velocidade,-velocidade*0.3f) : new Vector2(-velocidade,-velocidade*0.3f);

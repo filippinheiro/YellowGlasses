@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Códigos\Canhão\atirar_Canhao.cs" />
+     <Compile Include="Assets\Códigos\Canhão\gerenciadorDeUiDeVida.cs" />
      <Compile Include="Assets\Códigos\Canhão\tiro_defaut.cs" />
      <Compile Include="Assets\Códigos\Cógigos de Animação\animacao_DesativarTela.cs" />
+     <Compile Include="Assets\Códigos\Cógigos de Animação\animacao_efeitoExplosao.cs" />
      <Compile Include="Assets\Códigos\Cógigos de Animação\animacao_pauseSomente.cs" />
      <Compile Include="Assets\Códigos\GerenteDeJogo.cs" />
      <Compile Include="Assets\Códigos\Inimigos\Inimigo_Defaut.cs" />
@@ -61,6 +63,7 @@
      <Compile Include="Assets\Códigos\pooler.cs" />
      <Compile Include="Assets\Códigos\Telas\pontuacao.cs" />
      <Compile Include="Assets\Códigos\Telas\tempoDecorrido.cs" />
+     <Compile Include="Assets\efeitoExplosao.cs" />
  <Reference Include="UnityEngine.CoreModule">
  <HintPath>C:/Program Files/Unity/2018.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
  </Reference>
