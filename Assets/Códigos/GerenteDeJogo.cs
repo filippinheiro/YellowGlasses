@@ -26,7 +26,13 @@ public class GerenteDeJogo : MonoBehaviour {
 	public pontuacao pont;
 	public tempoDecorrido tempoDec;
 
+	public AudioSource soundEffects, music;
+	public bool sfxMutado =  false, musicMutado = false;
+	public AudioClip [] sfx, msc;
+
 	void Start () {
+		music.clip = msc[0];
+		music.Play();
 		vidaAgora = vidaMax;
 		pool = GameObject.FindGameObjectWithTag("bagInimigos").GetComponent<pooler>();
 	}
@@ -37,6 +43,11 @@ public class GerenteDeJogo : MonoBehaviour {
 			mecanicasDeJogo();
 			tenteMorrer();
 		}
+
+	if (Screen.fullScreen || Camera.main.aspect != 1) 
+    {
+		Screen.SetResolution(450, 800, false);
+    }
 	}
 
 	
@@ -68,9 +79,6 @@ public class GerenteDeJogo : MonoBehaviour {
 	public void diminuirVida(int dano){
 		vidaAgora -=  dano;
 	}
-	public void sair(){
-		Application.Quit();
-	}	
 
 	public void IniciarJogo(GameObject QuemChamou){
 			QuemChamou.GetComponent<Animator>().SetTrigger("Saia");			
@@ -82,17 +90,23 @@ public class GerenteDeJogo : MonoBehaviour {
 			pontuacao = 0;
 			dificuldade = 0;
 			tempoDec.zerarTempo();
+			music.clip = msc[1];
+			music.Play();
 	}
 
 	public void pausarJogo(){
 		pauseScreen.SetActive(true);
 		jogoPausado = true;
+		music.clip = msc[0];
+		music.Play();
 	}
 
 	public void despausar(){
 		Time.timeScale = 1;
 		jogoPausado = false;
-		gameScreen.SetActive(true); 
+		gameScreen.SetActive(true);
+		music.clip = msc[1];
+		music.Play(); 
 	}
 
 	public void menuPrincipal(){
@@ -112,7 +126,9 @@ public class GerenteDeJogo : MonoBehaviour {
 			for(int i = 0; i<inimigos.Length;i++){
 				inimigos[i].GetComponent<Inimigo_Defaut>().Explodir();
 			}
-			
+
+			music.clip = msc[0];
+			music.Play();
 			gameScreen.GetComponent<Animator>().SetTrigger("Saia");	
 			endScreen.SetActive(true);
 			endScreen.GetComponent<Animator>().SetTrigger("Volte");
@@ -125,6 +141,23 @@ public class GerenteDeJogo : MonoBehaviour {
 				recordTxt.text = PlayerPrefs.GetInt("recorde")+"pts";
 			}
 		JogoIniciado = false;
+		}
+	}
+
+	public void mutarDesmutar(bool sfxOuMusic){
+		if(sfxOuMusic){
+			sfxMutado = !sfxMutado;
+		}else{
+			musicMutado = !musicMutado;
+		}
+		soundEffects.mute = sfxMutado;
+		music.mute = musicMutado;
+	}
+
+	public void tocar(bool tipo, int code){
+		if(!tipo){
+			soundEffects.clip = sfx[code];
+			soundEffects.Play();
 		}
 	}
 }

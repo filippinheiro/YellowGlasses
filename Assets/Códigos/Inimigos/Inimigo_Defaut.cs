@@ -20,6 +20,7 @@ public class Inimigo_Defaut : MonoBehaviour {
 		if(vidaAgora <= 0){
 			poolEfeitos.pegarObjeto(0, transform.position, transform.rotation);
 			ger.pontuacao += dano;
+			ger.tocar(false,0);
 			gameObject.SetActive(false);
 		}	
 		GetComponent<Rigidbody2D>().simulated = !ger.jogoPausado;
@@ -34,6 +35,7 @@ public class Inimigo_Defaut : MonoBehaviour {
 
 	public void Explodir(){
 		poolEfeitos.pegarObjeto(1, transform.position, transform.rotation);
+		ger.tocar(false,1);
 		gameObject.SetActive(false);
 	}
 }
